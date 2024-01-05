@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  number_of_people: 1
+  description: MyText
+  special_requests: MyText
+
+two:
+  event: two
+  number_of_people: 1
+  description: MyText
+  special_requests: MyText
