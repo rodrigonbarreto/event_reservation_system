@@ -17,9 +17,12 @@ module Events
         special_requests:
       }
     end
-    #
-    # def create
-    #   Event.create!(attributes)
-    # end
+
+    def create
+      return false unless valid?
+
+      event = Event.new(attributes)
+      event.save!
+    end
   end
 end
