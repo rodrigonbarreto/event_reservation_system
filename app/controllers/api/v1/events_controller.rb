@@ -6,6 +6,10 @@ module Api
       class InvalidEventTypeError < StandardError; end
       INVALID_EVENT_TYPE_MSG = 'Invalid event type'
 
+      def index
+        @events  = Event.all
+        render json: @events
+      end
       def create
         form = build_event_form(event_params)
         return render json: form.errors, status: :unprocessable_entity unless form.valid?
