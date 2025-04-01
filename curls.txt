@@ -1,0 +1,101 @@
+# Exemplos de cURL para testar a API de eventos
+
+# =======================================
+# EVENTOS DE ANIVERSÁRIO (BIRTHDAY)
+# =======================================
+
+# Caso de SUCESSO para evento de aniversário
+# Número de pessoas (15) é > 10, conforme a regra de validação
+curl -X POST \
+  http://localhost:3000/api/v1/events \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event": {
+      "title": "Festa de Aniversário de 30 anos",
+      "description": "Celebração de aniversário com amigos e família",
+      "event_type": "birthday",
+      "number_of_people": 15,
+      "special_requests": "Decoração em azul e branco"
+    }
+  }'
+
+# Caso de FALHA para evento de aniversário
+# Número de pessoas (8) é <= 10, o que deve falhar na validação
+curl -X POST \
+  http://localhost:3000/api/v1/events \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event": {
+      "title": "Pequena Festa de Aniversário",
+      "description": "Celebração íntima de aniversário",
+      "event_type": "birthday",
+      "number_of_people": 8,
+      "special_requests": "Bolo de chocolate"
+    }
+  }'
+
+# =======================================
+# EVENTOS CORPORATIVOS (BUSINESS)
+# =======================================
+
+# Caso de SUCESSO para evento corporativo
+# Número de pessoas (10) é > 5, conforme a regra de validação
+curl -X POST \
+  http://localhost:3000/api/v1/events \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event": {
+      "title": "Workshop de Marketing Digital",
+      "description": "Treinamento para equipe de vendas",
+      "event_type": "business",
+      "number_of_people": 10,
+      "special_requests": "Projetor e coffee break",
+      "company_name": "Empresa ABC"
+    }
+  }'
+
+# Caso de FALHA para evento corporativo
+# Número de pessoas (3) é <= 5, o que deve falhar na validação
+curl -X POST \
+  http://localhost:3000/api/v1/events \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event": {
+      "title": "Reunião Executiva",
+      "description": "Reunião de planejamento estratégico",
+      "event_type": "business",
+      "number_of_people": 3,
+      "special_requests": "Sala de reunião com isolamento acústico",
+      "company_name": "Empresa ABC"
+    }
+  }'
+
+# =======================================
+# VALIDAÇÕES ADICIONAIS
+# =======================================
+
+# Caso de FALHA para tipo de evento inválido
+curl -X POST \
+  http://localhost:3000/api/v1/events \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event": {
+      "title": "Evento com Tipo Inválido",
+      "description": "Teste de validação de tipo",
+      "event_type": "wedding",
+      "number_of_people": 50,
+      "special_requests": "Teste"
+    }
+  }'
+
+# Caso de FALHA por campos obrigatórios ausentes
+curl -X POST \
+  http://localhost:3000/api/v1/events \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event": {
+      "description": "",
+      "special_requests": "",
+      "event_type": "business"
+    }
+  }'

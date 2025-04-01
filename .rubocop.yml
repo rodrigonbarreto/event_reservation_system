@@ -1,0 +1,40 @@
+inherit_from: .rubocop_ignore_rails_files.yml
+
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+Style/Documentation:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+DeprecatedActiveModelErrorsMethods:
+  Enabled: false
+#
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 20
+  CountAsOne:
+    - array
+    - heredoc
+    - method_call
+Metrics/BlockLength:
+  Max: 100
+  Exclude:
+    - "spec/**/*"
+    - "app/admin/**/*"
+    - "app/controllers/api/api_doc/**/*"
+    - "config/routes.rb"
+Style/ClassAndModuleChildren:
+  Enabled: false
+require:
+  - rubocop-rails
