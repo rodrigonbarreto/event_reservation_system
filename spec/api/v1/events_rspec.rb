@@ -111,10 +111,12 @@ RSpec.describe V1::Events, type: :request do
           post base_url, params: invalid_event_params
         end.not_to change(Event, :count)
 
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:unprocessable_entity)
         json_response = JSON.parse(response.body)
-        expect(json_response).to have_key("error")
-        expect(json_response["error"]).to eq("event_type does not have a valid value")
+        expect(json_response).to have_key("errors")
+        # Com dry-validation, o formato da mensagem de erro mudou
+        expect(json_response["errors"]).to have_key("title")
+        expect(json_response["errors"]).to have_key("event_type")
       end
     end
   end
@@ -122,7 +124,7 @@ RSpec.describe V1::Events, type: :request do
   describe "PUT /api/v1/events/:id" do
     let!(:event) { create(:event, valid_event_params) }
     let(:new_title) { "Updated Event Title" }
-    let(:update_params) { { title: new_title } }
+    let(:update_params) { { id: event.id, title: new_title, event_type: event.event_type } }
 
     context "when the event exists" do
       it "updates the event" do
@@ -139,7 +141,7 @@ RSpec.describe V1::Events, type: :request do
 
     context "when the event does not exist" do
       it "returns a 404 error" do
-        put "#{base_url}/999", params: update_params
+        put "#{base_url}/999", params: update_params.merge(id: 999)
 
         expect(response).to have_http_status(:not_found)
         json_response = JSON.parse(response.body)
@@ -150,10 +152,15 @@ RSpec.describe V1::Events, type: :request do
 
     context "with invalid parameters" do
       it "does not update the event and returns errors" do
-        put "#{base_url}/#{event.id}", params: invalid_event_params
+        put "#{base_url}/#{event.id}", params: {
+          id: event.id,
+          title: "",
+          event_type: "invalid_type"
+        }
 
-        expect(response).to have_http_status(:bad_request)
-        JSON.parse(response.body)
+        expect(response).to have_http_status(:unprocessable_entity)
+        json_response = JSON.parse(response.body)
+        expect(json_response).to have_key("errors")
       end
     end
   end

@@ -19,6 +19,9 @@ gem 'grape-swagger-entity'
 gem 'rswag-ui'
 
 gem "rack-cors"
+# part 2 Adicione essas novas gems
+gem 'dry-validation', '~> 1.10'
+gem 'interactor', '~> 3.1'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"

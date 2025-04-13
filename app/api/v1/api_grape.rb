@@ -14,7 +14,7 @@ class V1::ApiGrape < Grape::API
     hide_format: true,
     info: {
       title: "Events API",
-      description: "API para gerenciamento de eventos",
+      description: "API for event management",
       contact_name: "Support Team",
       contact_email: "contact@example.com"
     },
