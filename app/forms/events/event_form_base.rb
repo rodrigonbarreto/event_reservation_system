@@ -10,11 +10,11 @@ module Events
 
     def attributes
       {
-        title:,
-        description:,
-        event_type:,
-        number_of_people:,
-        special_requests:
+        title: title,
+        description: description,
+        event_type: event_type,
+        number_of_people: number_of_people,
+        special_requests: special_requests
       }
     end
     #
