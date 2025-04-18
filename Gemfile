@@ -23,6 +23,9 @@ gem "rack-cors"
 gem 'dry-validation', '~> 1.10'
 gem 'interactor', '~> 3.1'
 
+gem "devise"
+gem "jwt"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

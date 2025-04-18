@@ -3,6 +3,7 @@
 
 module V1
   class Events < Grape::API
+    before { authenticate_request! }
     # este é um exemplo apenas pro post, recomendo planejar melhor e criar algo como
     # FormatErrorHelpers e chamando
     # helpers ::Helpers::FormatErrorHelpers
@@ -46,8 +47,6 @@ module V1
       get ":id" do
         @event = Event.find(params[:id])
         present @event, with: ::Entities::EventResponse
-      rescue ActiveRecord::RecordNotFound
-        error!({ error: "Event not found" }, 404)
       end
 
       desc "Create a new event", {

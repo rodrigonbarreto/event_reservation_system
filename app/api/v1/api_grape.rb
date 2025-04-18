@@ -5,7 +5,12 @@ class V1::ApiGrape < Grape::API
   format :json
   default_format :json
 
+  use CustomErrorMiddleware
+
+  helpers ::Helpers::AuthHelpers
+
   mount V1::Events
+  mount V1::Login
 
   add_swagger_documentation(
     api_version: "v1",
