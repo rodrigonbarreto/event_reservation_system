@@ -54,6 +54,8 @@ GEM
     activerecord (7.0.8)
       activemodel (= 7.0.8)
       activesupport (= 7.0.8)
+    activerecord-import (2.1.0)
+      activerecord (>= 4.2)
     activestorage (7.0.8)
       actionpack (= 7.0.8)
       activejob (= 7.0.8)
@@ -69,6 +71,7 @@ GEM
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.4)
@@ -111,6 +114,13 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.0-x86_64-darwin)
       racc (~> 1.4)
+    pg (1.6.1-arm64-darwin)
+    pg (1.6.1-x86_64-darwin)
+    pry (0.15.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-rails (0.3.11)
+      pry (>= 0.13.0)
     psych (5.1.2)
       stringio
     puma (5.6.7)
@@ -169,8 +179,11 @@ PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
+  activerecord-import
   bootsnap
   debug
+  pg (~> 1.1)
+  pry-rails
   puma (~> 5.0)
   rails (~> 7.0.8)
   sqlite3 (~> 1.4)
