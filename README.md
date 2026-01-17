@@ -1,7 +1,13 @@
+# Repositório de Exemplos - Blog Posts
 
-# 01 - benefícios de usar Form Objects em seus projetos
+Este repositório contém exemplos práticos dos posts que escrevo para o [dev.to](https://dev.to/rodrigonbarreto).
 
-# Benefícios de usar Form Objects em Seus Projetos
+Cada branch representa um post diferente com seu código de exemplo correspondente.
 
-Este projeto demonstra a aplicação prática e os benefícios de utilizar Form Objects em desenvolvimento de software. 
-Form Objects são uma técnica poderosa no design de software, particularmente útil em simplificar e organizar o código, especialmente em projetos complexos.
+---
+
+# Examples Repository - Blog Posts
+
+This repository contains practical examples from the posts I write for [dev.to](https://dev.to/rodrigonbarreto).
+
+Each branch represents a different post with its corresponding example code.
